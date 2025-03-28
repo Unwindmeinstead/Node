@@ -1,0 +1,41 @@
+{
+  "name": "karmote",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Karmote - Task management app",
+  "devDependencies": {
+    "canvas": "^2.11.2",
+    "electron": "^35.0.3",
+    "electron-builder": "^25.1.8",
+    "svg2img": "^1.0.0-beta.2"
+  },
+  "build": {
+    "appId": "com.karmote.app",
+    "productName": "Karmote",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "icons/icon.png",
+      "target": [
+        "dmg"
+      ]
+    },
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!icons/create-icons.js",
+      "!icons/icon.svg",
+      "!node_modules/**/*"
+    ]
+  }
+}
