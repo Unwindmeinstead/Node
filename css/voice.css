@@ -1,0 +1,73 @@
+/* Simple voice button styles */
+.voice-btn {
+    width: 65px;
+    height: 65px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 0 32.5px 32.5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding-right: 5px;
+}
+
+.voice-btn:hover {
+    color: var(--text-color);
+}
+
+.voice-btn.active {
+    color: #4CAF50;
+}
+
+.voice-btn.recording .voice-icon path:first-child {
+    fill: #4CAF50;
+    animation: micTopFlash 0.6s infinite alternate;
+}
+
+.voice-icon {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+@keyframes micTopFlash {
+    0% { 
+        fill: #4CAF50;
+        opacity: 0.7;
+    }
+    100% { 
+        fill: #81C784;
+        opacity: 1;
+        filter: drop-shadow(0 0 3px rgba(76, 175, 80, 0.8));
+    }
+}
+
+
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .voice-btn {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .voice-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .voice-btn {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .voice-icon {
+        width: 18px;
+        height: 18px;
+    }
+}

@@ -1,41 +1,34 @@
 {
-  "name": "karmote",
+  "name": "node-task-manager",
   "version": "1.0.0",
-  "main": "main.js",
+  "description": "Advanced task management web application built with vanilla JavaScript",
+  "main": "index.html",
   "scripts": {
-    "start": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder",
-    "postinstall": "electron-builder install-app-deps"
+    "start": "python3 -m http.server 8080",
+    "serve": "python3 -m http.server 8080",
+    "dev": "python3 -m http.server 8080"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "Karmote - Task management app",
-  "devDependencies": {
-    "canvas": "^2.11.2",
-    "electron": "^35.0.3",
-    "electron-builder": "^25.1.8",
-    "svg2img": "^1.0.0-beta.2"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Unwindmeinstead/Node.git"
   },
-  "build": {
-    "appId": "com.karmote.app",
-    "productName": "Karmote",
-    "mac": {
-      "category": "public.app-category.productivity",
-      "icon": "icons/icon.png",
-      "target": [
-        "dmg"
-      ]
-    },
-    "directories": {
-      "output": "dist"
-    },
-    "files": [
-      "**/*",
-      "!icons/create-icons.js",
-      "!icons/icon.svg",
-      "!node_modules/**/*"
-    ]
+  "keywords": [
+    "task-management",
+    "productivity",
+    "web-app",
+    "vanilla-javascript",
+    "drag-drop",
+    "voice-input",
+    "local-storage",
+    "responsive-design"
+  ],
+  "author": "Unwindmeinstead",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Unwindmeinstead/Node/issues"
+  },
+  "homepage": "https://github.com/Unwindmeinstead/Node#readme",
+  "engines": {
+    "node": ">=12.0.0"
   }
 }

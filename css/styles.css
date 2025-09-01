@@ -1,0 +1,2917 @@
+/* Light/Dark Mode Variables */
+        :root {
+            /* Dark mode is default */
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --text-muted: #888888;
+            --pill-border: #333333;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            --setting-bg: #111111;
+            --setting-border: #333333;
+            --setting-header: #ffffff;
+            --setting-text: #dddddd;
+            --btn-bg: #2a2a2a;
+            --btn-border: #444444;
+            --modal-overlay: rgba(0, 0, 0, 0.7);
+            --sidebar-bg: #2a2a2a;
+            --border-color: #444;
+            --input-bg: #333;
+            --hover-bg: #555;
+            --accent-color: #5CB8FF;
+            --accent-hover: #4a9fe9;
+            --button-bg: #666;
+            --button-hover: #777;
+        }
+
+        body.light-mode {
+            --bg-color: #f5f5f5;
+            --text-color: #333333;
+            --text-muted: #666666;
+            --pill-border: #cccccc;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --setting-bg: #ffffff;
+            --setting-border: #dddddd;
+            --setting-header: #333333;
+            --setting-text: #555555;
+            --btn-bg: #eeeeee;
+            --btn-border: #cccccc;
+            --modal-overlay: rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pill-bar {
+            position: fixed;
+            bottom: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 75%;
+            max-width: 900px;
+            height: 65px;
+            background-color: var(--bg-color);
+            border-radius: 32.5px;
+            display: flex;
+            align-items: center;
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--pill-border);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            z-index: 10;
+        }
+
+        .task-input {
+            flex: 1;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 0 30px;
+            color: var(--text-color);
+            font-size: 16px;
+            font-weight: 300;
+            font-family: 'Poppins', sans-serif;
+            border-radius: 32.5px 0 0 32.5px;
+            text-indent: 0;
+            transition: padding 0.3s ease; /* Add smooth transition for padding change */
+        }
+
+        /* Only apply text-indent to the placeholder, not the actual text */
+        .task-input::placeholder {
+            color: var(--text-muted);
+            opacity: 1;
+            text-indent: 0; /* Restore original position */
+            transition: opacity 0.3s ease;
+        }
+        
+        /* Reset text-indent when input is focused */
+        .task-input:focus::placeholder {
+            text-indent: 0;
+            transition: text-indent 0.3s ease;
+        }
+        
+        
+        
+        
+        .settings-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        
+        .settings-button:hover {
+            color: var(--text-color);
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: rotate(45deg);
+        }
+        
+        .settings-icon {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        /* Search button positioned below settings */
+        .search-button {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        
+        .search-button:hover {
+            color: var(--text-color);
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: scale(1.1);
+        }
+        
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* Organize button */
+        .organize-button {
+            position: fixed;
+            top: 120px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        
+        .organize-button:hover {
+            color: var(--text-color);
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: scale(1.1);
+        }
+
+        .organize-button.active {
+            color: #4CAF50;
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+        
+        .organize-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Analytics panel */
+        .analytics-panel {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            width: 300px;
+            background: var(--bg-color);
+            border: 1px solid var(--pill-border);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .analytics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--pill-border);
+            cursor: pointer;
+        }
+
+        .analytics-header h3 {
+            margin: 0;
+            color: var(--text-color);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .analytics-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .collapse-analytics, .close-analytics {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .collapse-analytics svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            transition: transform 0.2s ease;
+        }
+
+        .analytics-panel.collapsed .collapse-analytics svg {
+            transform: rotate(180deg);
+        }
+
+        .close-analytics {
+            font-size: 20px;
+        }
+
+        .collapse-analytics:hover, .close-analytics:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+        }
+
+        .analytics-panel.collapsed .analytics-content {
+            display: none;
+        }
+
+        .analytics-content {
+            padding: 20px;
+        }
+
+        .analytics-summary {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .analytics-breakdown {
+            border-top: 1px solid var(--pill-border);
+            padding-top: 15px;
+        }
+
+        .category-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .category-stat:last-child {
+            border-bottom: none;
+        }
+
+        .category-name {
+            color: var(--text-color);
+            font-size: 14px;
+        }
+
+        .category-count {
+            background: rgba(92, 184, 255, 0.2);
+            color: #5CB8FF;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        /* Search popup with filter */
+        .search-popup {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            z-index: 1000;
+        }
+
+        .search-bar-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: var(--bg-color);
+            border: 2px solid var(--pill-border);
+            border-radius: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-bar-wrapper:focus-within {
+            border-color: #5CB8FF;
+            box-shadow: 0 4px 25px rgba(92, 184, 255, 0.4);
+        }
+
+        .search-input {
+            flex: 1;
+            height: 45px;
+            padding: 0 20px;
+            border: none;
+            background: transparent;
+            color: var(--text-color);
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-right: 8px;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+        }
+
+        .filter-btn.active {
+            background: rgba(92, 184, 255, 0.2);
+            color: #5CB8FF;
+        }
+
+        .filter-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Filter dropdown */
+        .filter-dropdown {
+            margin-top: 10px;
+            background: var(--bg-color);
+            border: 1px solid var(--pill-border);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .filter-section {
+            margin-bottom: 20px;
+        }
+
+        .filter-section:last-of-type {
+            margin-bottom: 15px;
+        }
+
+        .filter-section h4 {
+            margin: 0 0 10px 0;
+            color: var(--text-color);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .filter-section label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .filter-checkbox {
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+            accent-color: #5CB8FF;
+            cursor: pointer;
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 10px;
+            border-top: 1px solid var(--pill-border);
+            padding-top: 15px;
+        }
+
+        .clear-filters-btn,
+        .apply-filters-btn {
+            flex: 1;
+            padding: 8px 16px;
+            border: 1px solid var(--pill-border);
+            border-radius: 8px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .clear-filters-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .apply-filters-btn {
+            background: #5CB8FF;
+            color: white;
+            border-color: #5CB8FF;
+        }
+
+        .apply-filters-btn:hover {
+            background: #4a9fe9;
+        }
+
+        /* Search results */
+        .search-results {
+            margin-top: 10px;
+            background: var(--bg-color);
+            border: 1px solid var(--pill-border);
+            border-radius: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-results-header {
+            padding: 15px 20px 10px;
+            border-bottom: 1px solid var(--pill-border);
+        }
+
+        .results-count {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .search-results-list {
+            padding: 10px;
+        }
+
+        .search-result-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--pill-border);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .search-result-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .search-result-title {
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .search-result-details {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .search-result-badge {
+            background: rgba(92, 184, 255, 0.2);
+            color: #5CB8FF;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+        }
+
+        .search-highlight {
+            background: rgba(255, 255, 0, 0.3);
+            padding: 1px 2px;
+            border-radius: 2px;
+        }
+
+        /* Card focus animation */
+        @keyframes cardPulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.08);
+            }
+            100% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Cards Container */
+        .cards-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 130px);
+            pointer-events: none;
+            perspective: 1200px;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .cards-stack {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 480px;
+            pointer-events: all;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Card Styling */
+        .card {
+            position: absolute;
+            border-radius: 28px; /* Increased roundness */
+            width: 320px;
+            padding: 24px; /* Slightly more padding */
+            color: var(--setting-text);
+            opacity: 0;
+            transform-origin: center center;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25), 0 4px 10px rgba(0, 0, 0, 0.22); /* Premium layered shadow */
+            backdrop-filter: blur(5px); /* Subtle blur effect */
+            -webkit-backdrop-filter: blur(5px);
+            pointer-events: all;
+            transform: translateX(0) scale(0.95) rotate(0deg);
+            height: 480px;
+            display: flex;
+            flex-direction: column;
+            cursor: grab;
+            will-change: transform, opacity;
+            animation-duration: 0.15s;
+            animation-timing-function: ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+        }
+        
+        /* Premium deletion animation keyframes */
+        @keyframes deleteCardPremium {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+        }
+
+        .card.dragging {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3) !important;
+            opacity: 1 !important;
+            cursor: grabbing !important;
+            transform: none !important;
+            transition: none !important;
+            z-index: 10000 !important;
+        }
+
+        .card.positioned {
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease !important;
+            transform: none !important;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .card-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Increased from 8px for more consistent spacing */
+        }
+        
+        /* Unified button styles for all card header controls */
+        .card-header-controls button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            padding: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25); /* Slightly more opaque for visibility */
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            opacity: 0.85; /* Higher default opacity */
+            color: rgba(0, 0, 0, 0.9); /* Darker color for better contrast */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+        
+        .card-header-controls button:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-1px);
+            opacity: 1;
+        }
+        
+        .card-header-controls button svg {
+            width: 14px;
+            height: 14px;
+            stroke-width: 2.5; /* Slightly thicker lines for better visibility */
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke: rgba(0, 0, 0, 0.9); /* Darker stroke for better contrast */
+            filter: drop-shadow(0px 1px 1px rgba(255, 255, 255, 0.3)); /* Subtle shadow for better visibility */
+        }
+
+        .card-header-controls .delete-card:hover {
+            background-color: rgba(255, 92, 92, 0.9);
+            color: white;
+        }
+        
+        .card-header-controls .delete-card:hover svg {
+            stroke: white; /* Keep the SVG stroke white on hover */
+        }
+        
+        .card-tag {
+            font-size: 12px;
+            background-color: transparent; /* Remove background */
+            color: rgba(0, 0, 0, 0.9); /* Darker text for better readability */
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600; /* Slightly bolder for better visibility */
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.2); /* Subtle text shadow */
+            border: none; /* Remove border */
+        }
+
+        /* Make category icons round */
+        .category-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            background: rgba(240, 240, 240, 0.35);
+            border-radius: 50%;
+            padding: 4px;
+            margin-right: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            line-height: 1.2;
+            outline: none !important;
+            padding: 2px 4px;
+            border-radius: 6px;
+            transition: color 0.2s ease;
+            text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2); /* Add subtle text shadow for better readability */
+            color: rgba(0, 0, 0, 0.85); /* Darken text color slightly for better contrast */
+            border: none !important;
+        }
+
+        .card-title:focus {
+            background-color: transparent !important;
+            outline: none !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+        
+        .card-title:hover, .card-title:active {
+            background-color: transparent !important;
+            outline: none !important;
+        }
+
+        .card.collapsed .card-title {
+            margin-bottom: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card.collapsed .task-list-container,
+        .card.collapsed .add-step,
+        .card.collapsed .card-footer {
+            display: none;
+        }
+
+        .card.collapsed {
+            height: auto !important;
+            min-height: 80px;
+            padding-bottom: 10px;
+        }
+
+        .task-list-container {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            position: relative;
+            padding-right: 5px;
+            mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+        }
+
+        .task-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: opacity 0.2s ease, height 0.2s ease, margin-bottom 0.2s ease, padding-bottom 0.2s ease;
+        }
+
+        .task-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            margin-right: 10px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+            background-color: rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+        }
+
+        .task-checkbox:checked {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-color: transparent;
+        }
+
+        .task-checkbox:checked::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 6px;
+            width: 4px;
+            height: 9px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .task-text {
+            flex: 1;
+            font-size: 14px;
+            font-weight: 500; /* Slightly bolder for better readability */
+            color: rgba(0, 0, 0, 0.85); /* Darker text for better contrast */
+            transition: all 0.2s ease;
+            word-break: break-word;
+            outline: none;
+            padding: 2px 5px;
+            text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.15); /* Subtle text shadow */
+        }
+
+        .task-text:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        .task-checkbox:checked + .task-text {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .delete-task {
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            color: #555;
+            opacity: 0;
+            transition: all 0.2s ease;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+
+        .task-item:hover .delete-task {
+            opacity: 0.7;
+        }
+
+        .delete-task:hover {
+            opacity: 1 !important;
+            background-color: rgba(255, 92, 92, 0.9);
+            color: white;
+        }
+
+        .task-list-container::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .task-list-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .task-list-container::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        .empty-task-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: rgba(0, 0, 0, 0.4);
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .empty-task-list svg {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 10px;
+            stroke: rgba(0, 0, 0, 0.3);
+        }
+
+        .add-step {
+            background: transparent;
+            border: 1px dashed rgba(0, 0, 0, 0.3);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .add-step svg {
+            margin-right: 6px;
+            width: 14px;
+            height: 14px;
+        }
+
+        .add-step:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .color-picker {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            transition: transform 0.2s ease;
+            overflow: hidden;
+            background-size: cover !important; /* Ensure gradients display properly */
+        }
+
+        .color-picker:hover {
+            transform: scale(1.1);
+        }
+
+        .card-timestamp {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.7);
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .delete-card, .toggle-collapse, .card-complete-button, .card-priority-flag, .card-due-date {
+            /* These properties are now handled by the unified .card-header-controls button styles */
+            z-index: 2;
+        }
+        
+        /* Remove redundant hover rules since they're now covered by the unified button styles */
+        
+        .card-priority-flag.card-priority-high {
+            color: #e53935;
+            background-color: rgba(229, 57, 53, 0.2);
+        }
+        
+        .card-priority-flag.card-priority-medium {
+            color: #fb8c00;
+            background-color: rgba(251, 140, 0, 0.2);
+        }
+        
+        .card-priority-flag.card-priority-low {
+            color: #43a047;
+            background-color: rgba(67, 160, 71, 0.2);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05));
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .task-list-container.scrollable .scroll-indicator {
+            opacity: 1;
+        }
+
+        /* Notification Popup */
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 1000;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .notification.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .notification-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            vertical-align: middle;
+            fill: #FFCC5C;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .pill-bar {
+                width: 85%;
+                height: 60px;
+                bottom: 25px;
+            }
+            
+            .task-input {
+                font-size: 15px;
+                padding: 0 20px;
+            }
+            
+            
+
+            .cards-stack {
+                max-width: 700px;
+            }
+            
+            .card {
+                width: 280px;
+                height: 450px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .pill-bar {
+                width: 92%;
+                height: 55px;
+                bottom: 20px;
+            }
+            
+            .task-input {
+                font-size: 14px;
+                padding: 0 15px;
+            }
+            
+            
+            
+            .settings-button {
+                top: 15px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+            }
+            
+            .settings-icon {
+                width: 18px;
+                height: 18px;
+            }
+
+            .search-button {
+                top: 60px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+            }
+            
+            .search-icon {
+                width: 18px;
+                height: 18px;
+            }
+
+            .organize-button {
+                top: 105px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+            }
+            
+            .organize-icon {
+                width: 18px;
+                height: 18px;
+            }
+
+            .cards-stack {
+                max-width: 500px;
+            }
+
+            .card {
+                width: 260px;
+                height: 420px;
+            }
+            
+            .card-title {
+                font-size: 20px;
+            }
+
+            .notification {
+                width: 85%;
+                font-size: 13px;
+                padding: 10px 15px;
+            }
+        }
+
+        /* Settings Modal */
+        .settings-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-overlay);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .settings-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .settings-content {
+            width: 1000px;
+            max-width: 90%;
+            height: 80vh;
+            max-height: 800px;
+            background-color: var(--setting-bg);
+            background-image: linear-gradient(to bottom, rgba(30, 30, 30, 0.2), rgba(0, 0, 0, 0.5));
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: flex;
+            border: 1px solid var(--setting-border);
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        
+        .settings-modal.show .settings-content {
+            transform: scale(1);
+        }
+        
+        .settings-close-x {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            background-color: transparent;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s ease;
+        }
+        
+        .settings-close-x:hover {
+            color: var(--text-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Category indicator in input bar */
+        .category-indicator {
+            position: absolute;
+            top: -28px;
+            right: 20px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 5;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* New inline category indicator */
+        .inline-category {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--text-color);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 2;
+            pointer-events: none;
+            visibility: hidden; /* Ensures it's completely hidden when not active */
+        }
+        
+        .inline-category:after {
+            content: "•";
+            margin-left: 8px;
+            opacity: 0.7;
+        }
+        
+        .inline-category.active {
+            opacity: 1;
+            visibility: visible; /* Make visible when active */
+        }
+        
+        /* Adjust input padding when category is shown */
+        .task-input.with-category {
+            padding-left: 110px; /* Make room for the category indicator */
+        }
+        
+        /* Fancy animation for the category change */
+        @keyframes categoryPulse {
+            0% { transform: translateY(-50%) scale(0.95); opacity: 0.2; }
+            50% { transform: translateY(-50%) scale(1.05); opacity: 1; }
+            100% { transform: translateY(-50%) scale(1); opacity: 1; }
+        }
+        
+        .inline-category.animate {
+            animation: categoryPulse 0.4s ease forwards;
+        }
+
+        /* Two column layout */
+        .settings-sidebar {
+            width: 240px;
+            height: 100%;
+            background-color: #1a1a1a; /* Dark grey - adjust as needed */
+            border-right: 1px solid var(--setting-border);
+            display: flex;
+            flex-direction: column;
+            color: #e0e0e0;
+        }
+        
+        /* Category icons in card tags */
+        .category-icon {
+            vertical-align: middle;
+            margin-right: 5px;
+            stroke: currentColor;
+        }
+        
+        /* Reminder card specific styles */
+        .card-type-reminder .reminder-datetime {
+            margin: 5px 15px 15px;
+            padding: 8px 12px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-type-reminder .reminder-date,
+        .card-type-reminder .reminder-time {
+            display: inline-block;
+            margin-right: 10px;
+            font-weight: 500;
+        }
+        
+        .card-type-reminder .date-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .card-type-reminder .date-item svg {
+            margin-right: 12px;
+            stroke: rgba(255, 255, 255, 0.9);
+        }
+        
+        .card-type-reminder .date-text {
+            flex: 1;
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            outline: none;
+        }
+        
+        /* Note card specific styles */
+        .card-type-note .note-content {
+            margin: 0 15px 15px;
+            padding: 12px;
+            min-height: 120px;
+            max-height: 300px;
+            overflow-y: auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+            outline: none;
+        }
+        
+        .card-type-note .note-content:empty:before {
+            content: attr(placeholder);
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+            pointer-events: none;
+            display: block;
+        }
+        
+        /* Idea card specific styles */
+        .card-type-idea .task-list-container {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 10px;
+        }
+        
+        .card-type-idea .add-step {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        /* Goal card specific styles */
+        .card-type-goal .task-checkbox:checked + .task-text {
+            text-decoration: line-through;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .card-type-goal .task-item {
+            border-left: 3px solid rgba(255, 255, 255, 0.2);
+            padding-left: 12px;
+        }
+        
+        /* Meeting card specific styles */
+        .card-type-meeting .task-item:before {
+            content: "•";
+            font-size: 18px;
+            display: inline-block;
+            margin-right: 8px;
+            vertical-align: middle;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Work card specific styles */
+        .card-type-work .task-text {
+            font-weight: 500;
+        }
+        
+        /* Travel card specific styles */
+        .card-type-travel .task-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        
+        /* Make all category type cards work with the existing functionality */
+        .card[class*="card-type-"] .card-title {
+            margin-bottom: 10px;
+        }
+
+        .settings-logo {
+            padding: 24px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--setting-header);
+            font-weight: 600;
+            font-size: 18px;
+            border-bottom: 1px solid var(--setting-border);
+        }
+
+        .settings-logo svg {
+            stroke: var(--setting-header);
+        }
+
+        .settings-nav {
+            flex: 1;
+            padding: 20px 0;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: transparent;
+            border: none;
+            text-align: left;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-item svg {
+            stroke: var(--text-muted);
+            transition: stroke 0.2s ease;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-color);
+        }
+
+        .nav-item:hover svg {
+            stroke: var(--text-color);
+        }
+
+        .nav-item.active {
+            color: var(--text-color);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-item.active svg {
+            stroke: var(--text-color);
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background-color: #5CB8FF;
+        }
+
+        .settings-footer {
+            padding: 20px;
+            border-top: 1px solid var(--setting-border);
+        }
+
+        .close-settings-btn {
+            width: 100%;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--btn-bg);
+            border: 1px solid var(--btn-border);
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .close-settings-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Settings Main Content */
+        .settings-main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+        }
+
+        .settings-panel {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .settings-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .settings-panel h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--setting-header);
+            margin: 0 0 30px 0;
+        }
+
+        .setting-group {
+            margin-bottom: 36px;
+            max-width: 600px;
+        }
+
+        .setting-group h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--setting-header);
+            margin: 0 0 12px 0;
+        }
+
+        .setting-description {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Theme Options */
+        .theme-options {
+            display: flex;
+            gap: 16px;
+        }
+
+        .theme-option {
+            flex: 1;
+            padding: 16px;
+            border-radius: 12px;
+            background-color: var(--btn-bg);
+            border: 1px solid var(--btn-border);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+            max-width: 160px;
+        }
+
+        .theme-option:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .theme-option.active {
+            border-color: #5CB8FF;
+            background-color: rgba(92, 184, 255, 0.1);
+        }
+
+        .option-preview {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .option-preview.dark {
+            background-color: #121212;
+            border: 1px solid #333;
+        }
+
+        .option-preview.dark svg {
+            stroke: #5CB8FF;
+        }
+
+        .option-preview.light {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+        }
+
+        .option-preview.light svg {
+            stroke: #333;
+        }
+
+        .theme-option span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        /* Slider Control */
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 8px;
+        }
+
+        .slider-label {
+            font-size: 14px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .slider-label:last-child {
+            font-size: 18px;
+        }
+
+        .slider {
+            flex: 1;
+            height: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--btn-border);
+            outline: none;
+            border-radius: 2px;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #5CB8FF;
+            cursor: pointer;
+            border: 2px solid var(--setting-bg);
+        }
+
+        .slider-value {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Buttons */
+        .button-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .setting-button {
+            padding: 12px 16px;
+            border-radius: 8px;
+            background-color: var(--btn-bg);
+            border: 1px solid var(--btn-border);
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .setting-button svg {
+            stroke: var(--text-color);
+        }
+
+        .setting-button:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .setting-button.warning {
+            color: #ff6b6b;
+            border-color: rgba(255, 107, 107, 0.3);
+        }
+
+        .setting-button.warning svg {
+            stroke: #ff6b6b;
+        }
+
+        .setting-button.warning:hover {
+            background-color: rgba(255, 107, 107, 0.1);
+        }
+
+        /* Select Input */
+        .select-container {
+            position: relative;
+            max-width: 200px;
+        }
+
+        .settings-select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            background-color: var(--btn-bg);
+            border: 1px solid var(--btn-border);
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+        }
+
+        .settings-select:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .settings-select:focus {
+            outline: none;
+            border-color: #5CB8FF;
+        }
+
+        /* Checkbox */
+        .checkbox-container {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .settings-checkbox {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--btn-border);
+            border-radius: 4px;
+            margin-right: 12px;
+            position: relative;
+            background-color: var(--btn-bg);
+            cursor: pointer;
+        }
+
+        .settings-checkbox:checked {
+            background-color: #5CB8FF;
+            border-color: #5CB8FF;
+        }
+
+        .settings-checkbox:checked::after {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 7px;
+            width: 4px;
+            height: 9px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-container label {
+            font-size: 14px;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        /* About Section */
+        .about-app {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .app-logo {
+            margin-bottom: 15px;
+        }
+
+        .app-logo svg {
+            stroke: var(--text-color);
+        }
+
+        .about-app h3 {
+            font-size: 20px;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+        }
+
+        .version {
+            color: var(--text-muted);
+            margin: 0 0 15px 0;
+            font-size: 14px;
+        }
+
+        .about-description {
+            color: var(--text-color);
+            font-size: 15px;
+            max-width: 400px;
+            line-height: 1.5;
+        }
+
+        .credits {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-top: 40px;
+        }
+
+        .copyright {
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        /* Responsive Settings for smaller screens */
+        @media (max-width: 768px) {
+            .settings-content {
+                width: 95%;
+                height: 95vh;
+                flex-direction: column;
+            }
+            
+            .settings-sidebar {
+                width: 100%;
+                padding: 15px 10px;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+            
+            .settings-logo {
+                padding: 15px;
+            }
+            
+            .settings-nav {
+                flex-direction: row;
+                padding: 10px;
+                overflow-x: auto;
+                justify-content: flex-start;
+            }
+            
+            .nav-item {
+                flex-direction: column;
+                padding: 10px;
+                gap: 5px;
+                width: 80px;
+                text-align: center;
+                font-size: 12px;
+            }
+            
+            .nav-item.active::before {
+                left: 0;
+                top: auto;
+                bottom: 0;
+                height: 3px;
+                width: 100%;
+            }
+            
+            .settings-footer {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+            
+            .settings-main {
+                padding: 20px 15px;
+                position: relative;
+            }
+            
+            .theme-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .theme-option {
+                width: 100%;
+                max-width: none;
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+        }
+
+        /* Global transition for theme changes */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Travel card specific styles */
+        .card-type-travel .task-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        
+        /* Make all category type cards work with the existing functionality */
+        .card[class*="card-type-"] .card-title {
+            margin-bottom: 10px;
+        }
+        
+        /* Completed card styles */
+        .card.completed {
+            opacity: 0.8;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            transform: scale(0.9);
+        }
+        
+        .card.completed::before {
+            content: "✓";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 5;
+        }
+        
+        .card.completed .card-title {
+            text-decoration: line-through;
+            opacity: 0.75;
+        }
+        
+        .card.completed .task-list-container {
+            opacity: 0.7;
+        }
+        
+        /* Completed cards section */
+        .completed-cards-section {
+            position: fixed;
+            bottom: 120px;
+            right: 20px;
+            width: 320px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            display: none; /* Hide by default - will be shown by JS when needed */
+            flex-direction: column;
+            align-items: center;
+            z-index: 5;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            cursor: move; /* Indicate it's draggable */
+        }
+        
+        .completed-cards-section.dragging {
+            opacity: 0.8;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+            will-change: transform;
+            transform-origin: top left;
+            /* Disable all transitions during dragging for performance */
+            transition: none !important;
+            /* Enable hardware acceleration */
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+        
+        .completed-cards-section.dragging * {
+            /* Disable transitions on all children during dragging */
+            transition: none !important;
+            will-change: auto;
+        }
+        
+        .completed-cards-section {
+            transform: translate3d(0, 0, 0);
+            will-change: auto;
+            /* Create a new stacking context for better performance */
+            isolation: isolate;
+        }
+        
+        .completed-section-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: move; /* Make sure header also shows drag cursor */
+        }
+        
+        .drag-handle {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.2s ease;
+        }
+        
+        .completed-section-header:hover .drag-handle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .completed-section-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .completed-cards-count {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            border-radius: 10px;
+            padding: 2px 8px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .completed-cards-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+            transition: max-height 0.3s ease;
+        }
+        
+        .completed-cards-container.collapsed {
+            max-height: 0;
+            overflow: hidden;
+        }
+        
+        .collapse-completed-section {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .collapse-completed-section:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .completed-cards-section .card {
+            margin: 0 0 8px 0;
+            position: relative !important;
+            left: 0 !important;
+            top: 0 !important;
+            width: 100%;
+            max-width: 280px;
+            transform: none !important;
+            opacity: 0.85 !important;
+            transition: all 0.3s ease;
+            /* Make cards more compact */
+            padding: 8px 10px !important;
+            min-height: 50px !important;
+            font-size: 13px !important;
+        }
+        
+        .completed-cards-section .card.collapsed {
+            height: 50px;
+        }
+        
+        /* Make text content in completed cards more compact */
+        .completed-cards-section .card .task-text {
+            font-size: 12px !important;
+            line-height: 1.3 !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+        }
+        
+        .completed-cards-section .card .task-list-container {
+            font-size: 11px !important;
+            max-height: 40px !important;
+            overflow: hidden !important;
+        }
+        
+        .completed-cards-section .card .task-list-item {
+            font-size: 11px !important;
+            padding: 2px 0 !important;
+            line-height: 1.2 !important;
+        }
+        
+        .card-complete-button {
+            /* Remove absolute positioning to allow it to be part of the flex layout */
+            position: static;
+            top: auto;
+            right: auto;
+            width: 28px; /* Match the other buttons */
+            height: 28px; /* Match the other buttons */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.15); /* Match the other buttons */
+            border: none;
+            border-radius: 4px; /* Match the other buttons */
+            cursor: pointer;
+            color: #000; /* Explicitly set to black to match other icons */
+            opacity: 0.7;
+            transition: all 0.2s ease;
+            z-index: 2;
+        }
+        
+        .card-complete-button svg {
+            /* Match the styling of other button SVGs */
+            width: 14px;
+            height: 14px;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke: #000; /* Explicitly set the stroke color to black */
+        }
+        
+        .card:hover .card-complete-button {
+            opacity: 1;
+        }
+        
+        .card.completed .card-complete-button {
+            background-color: rgba(76, 175, 80, 0.3);
+            color: #4CAF50;
+            opacity: 1;
+        }
+        
+        .card.completed .card-complete-button svg {
+            stroke: #4CAF50; /* Ensure the SVG stroke is green when completed */
+        }
+
+        /* Knowledge Base Styles */
+        .knowledge-base {
+            max-width: 700px;
+        }
+        
+        .kb-section {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+        
+        .kb-section details {
+            width: 100%;
+        }
+        
+        .kb-section summary {
+            padding: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+            user-select: none;
+            color: var(--text-color); /* Use the text color variable to match the theme */
+        }
+        
+        .kb-section summary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .kb-section details[open] summary {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 10px;
+        }
+        
+        .kb-section summary::after {
+            content: "▼";
+            position: absolute;
+            right: 15px;
+            font-size: 12px;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+        
+        .kb-section details[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .kb-content {
+            padding: 0 15px 15px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text-muted);
+        }
+        
+        .kb-content h4 {
+            margin: 0 0 15px 0;
+            font-size: 16px;
+            color: var(--text-color); /* Use the text color variable to match the theme */
+        }
+        
+        .kb-content h5 {
+            margin: 15px 0 5px 0;
+            font-size: 14px;
+            color: var(--text-color); /* Use the text color variable to match the theme */
+        }
+        
+        .kb-content p {
+            margin: 0 0 10px 0;
+        }
+        
+        .kb-content ul {
+            margin: 0 0 15px 0;
+            padding-left: 20px;
+        }
+        
+        .kb-content li {
+            margin-bottom: 5px;
+        }
+        
+        .kb-content strong {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+        
+        /* Responsive Settings for smaller screens */
+        @media (max-width: 768px) {
+            .settings-content {
+                width: 95%;
+                height: 95vh;
+                flex-direction: column;
+            }
+            
+            .settings-sidebar {
+                width: 100%;
+                padding: 15px 10px;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+            
+            .settings-logo {
+                padding: 15px;
+            }
+            
+            .settings-nav {
+                flex-direction: row;
+                padding: 10px;
+                overflow-x: auto;
+                justify-content: flex-start;
+            }
+            
+            .nav-item {
+                flex-direction: column;
+                padding: 10px;
+                gap: 5px;
+                width: 80px;
+                text-align: center;
+                font-size: 12px;
+            }
+            
+            .nav-item.active::before {
+                left: 0;
+                top: auto;
+                bottom: 0;
+                height: 3px;
+                width: 100%;
+            }
+            
+            .settings-footer {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+            
+            .settings-main {
+                padding: 20px 15px;
+                position: relative;
+            }
+            
+            .theme-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .theme-option {
+                width: 100%;
+                max-width: none;
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+        }
+        
+        /* Calendar integration styles */
+        .calendar-connect-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .connect-calendar-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: var(--text-color);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .connect-calendar-btn:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .connect-calendar-btn[data-provider="google"] {
+            border-left: 4px solid #4285F4;
+        }
+        
+        .connect-calendar-btn[data-provider="apple"] {
+            border-left: 4px solid #A3AAAE;
+        }
+        
+        .calendar-sync-options {
+            margin-top: 15px;
+            opacity: 0.7;
+        }
+        
+        .connect-notice {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 10px;
+        }
+        
+        /* Calendar auth modal */
+        .calendar-auth-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .calendar-auth-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .calendar-auth-modal .modal-content {
+            background-color: var(--bg-color);
+            border-radius: 10px;
+            padding: 25px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .calendar-auth-modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .calendar-auth-modal h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .calendar-auth-modal p {
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text-color);
+        }
+        
+        .calendar-auth-modal ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .calendar-auth-modal li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        
+        .modal-close-btn {
+            padding: 8px 15px;
+            background-color: var(--button-bg);
+            border: none;
+            border-radius: 5px;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .modal-close-btn:hover {
+            background-color: var(--button-hover);
+        }
+        
+        /* Theme toggle styles */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        
+        .theme-toggle:hover {
+            color: var(--text-color);
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: rotate(45deg);
+        }
+        
+        .theme-toggle svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+        
+        /* Priority flags and due dates */
+        .card-priority-flag {
+            /* Cleaned up redundant properties that are now handled by card-header-controls button */
+        }
+        
+        .card-priority-flag.card-priority-high {
+            color: #e53935;
+            background-color: rgba(229, 57, 53, 0.2);
+        }
+        
+        .card-priority-flag.card-priority-medium {
+            color: #fb8c00;
+            background-color: rgba(251, 140, 0, 0.2);
+        }
+        
+        .card-priority-flag.card-priority-low {
+            color: #43a047;
+            background-color: rgba(67, 160, 71, 0.2);
+        }
+        
+        .card-due-date {
+            /* Cleaned up redundant properties that are now handled by card-header-controls button */
+        }
+        
+        /* Hover effect is already handled by the unified card-header-controls button styles */
+        
+        .due-date-display {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 5px;
+            padding: 3px 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .due-date-display.overdue {
+            background-color: rgba(229, 57, 53, 0.3);
+            color: #ffcdd2;
+        }
+        
+        .due-date-display.today {
+            background-color: rgba(251, 140, 0, 0.3);
+            color: #ffe0b2;
+        }
+        
+        .due-date-display.upcoming {
+            background-color: rgba(67, 160, 71, 0.3);
+            color: #c8e6c9;
+        }
+        
+        .date-picker-container {
+            position: absolute;
+            z-index: 1000;
+            background-color: var(--bg-color);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            width: 240px; /* Reduced width */
+            font-size: 0.9em; /* Smaller font size throughout */
+        }
+        
+        .date-picker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+        
+        .date-picker-header h4 {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        .date-picker-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 3px 5px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            font-size: 16px;
+            line-height: 1;
+        }
+        
+        .date-picker-close:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-color);
+        }
+        
+        .date-picker-calendar {
+            margin-bottom: 10px;
+        }
+        
+        .time-picker-container {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .time-picker-header {
+            font-size: 12px;
+            color: var(--text-color);
+            margin-bottom: 6px;
+        }
+        
+        .time-picker-inputs {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .time-input {
+            width: 40px; /* Smaller inputs */
+            padding: 3px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--input-bg);
+            color: var(--text-color);
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        .time-separator {
+            color: var(--text-muted);
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        .time-period {
+            padding: 3px 6px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--input-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .reminder-options {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+            display: flex; /* Make options horizontal */
+            flex-wrap: wrap; /* Allow wrapping if needed */
+            gap: 8px;
+        }
+        
+        .reminder-option {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 0;
+            cursor: pointer;
+            flex-basis: 45%; /* Two options per row */
+        }
+        
+        .reminder-option input[type="radio"] {
+            margin: 0;
+            transform: scale(0.8); /* Smaller radio buttons */
+        }
+        
+        .reminder-option label {
+            font-size: 12px;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+        
+        .date-picker-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .date-picker-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+        
+        .date-picker-btn.primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .date-picker-btn.primary:hover {
+            background-color: var(--accent-hover);
+        }
+        
+        .date-picker-btn.secondary {
+            background-color: var(--button-bg);
+            color: var(--text-color);
+        }
+        
+        .date-picker-btn.secondary:hover {
+            background-color: var(--button-hover);
+        }
+        
+        .reminder-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            background-color: var(--accent-color);
+            color: white;
+            margin-left: 8px;
+        }
+        
+        .reminder-badge svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* Keyboard shortcut styles */
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 0 5px;
+        }
+        
+        .calendar-header button {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 3px 6px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            font-size: 12px;
+        }
+        
+        .calendar-header button:hover {
+            background-color: var(--hover-bg);
+        }
+        
+        .calendar-header span {
+            font-weight: 500;
+            color: var(--text-color);
+            font-size: 13px;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            padding: 0 5px;
+        }
+        
+        .calendar-day-header {
+            text-align: center;
+            font-size: 10px;
+            color: var(--text-muted);
+            padding: 3px 0;
+            font-weight: 500;
+        }
+        
+        .calendar-day {
+            text-align: center;
+            padding: 5px 2px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 11px;
+            color: var(--text-color);
+        }
+        
+        .calendar-day:hover {
+            background-color: var(--hover-bg);
+        }
+        
+        .calendar-day.padding {
+            cursor: default;
+        }
+        
+        .calendar-day.today {
+            background-color: var(--accent-color);
+            color: white;
+            font-weight: 500;
+        }
+        
+        .calendar-day.selected {
+            background-color: var(--accent-hover);
+            color: white;
+            font-weight: 500;
+        }
+        
+        /* Change text color to white for all elements inside cards */
+        .card {
+            color: white;
+        }
+        
+        /* Ensure specific elements inside cards also have white text */
+        .card h1, .card h2, .card h3, .card h4, .card h5, .card h6,
+        .card p, .card span, .card div, .card label,
+        .card .card-title, .card .card-description, .card .card-date,
+        .card-content, .task-title, .task-description {
+            color: white !important;
+        }
+        
+        /* Make icon containers white */
+        .icon-container, .card-icons, .task-icons, .icons,
+        .card-footer, .card-actions, .card-options {
+            color: white !important;
+        }
+        
+        /* Ensure individual icons are white */
+        .icon, .fa, .fas, .far, .fab, .material-icons {
+            color: white !important;
+        }
+        
+        /* Make icon container backgrounds white */
+        .card-complete-button,
+        .card-calendar-button,
+        .card-flag-button,
+        .card-delete-button,
+        .card-collapse-button,
+        .card-options-button,
+        .card-action-button,
+        .card .icon-button {
+            background-color: white !important;
+            color: #333 !important; /* Darker text for contrast against white */
+        }
+        
+        /* Update the SVG styling for all icon buttons */
+        .card-complete-button svg,
+        .card-calendar-button svg,
+        .card-flag-button svg,
+        .card-delete-button svg,
+        .card-collapse-button svg,
+        .card-options-button svg,
+        .card-action-button svg,
+        .card .icon-button svg {
+            stroke: #333 !important; /* Darker stroke for contrast against white */
+        }
+        
+        /* Update the specific styling for card-complete-button */
+        .card-complete-button {
+            background-color: white !important;
+            color: #333 !important;
+        }
+        
+        .card-complete-button svg {
+            stroke: #333 !important;
+        }
+        
+        /* For completed cards, maintain the green confirmation styling */
+        .card.completed .card-complete-button {
+            background-color: white !important;
+            color: #4CAF50 !important;
+        }
+        
+        .card.completed .card-complete-button svg {
+            stroke: #4CAF50 !important;
+        }
+
+        /* Super specific selectors for all icon buttons in cards */
+        .card *[class*="button"],
+        .card *[class*="icon"],
+        .card .action-icon,
+        .card .action-button,
+        .card-action-icon,
+        .card-action-button,
+        .card-complete-button,
+        .card-edit-button,
+        .card-delete-button,
+        .card-flag-button,
+        .card-calendar-button,
+        .card-collapse-button,
+        .card-pin-button,
+        .card-archive-button,
+        .card-more-button,
+        .card .task-action,
+        .card .task-button,
+        .card .action-item,
+        .card .card-action,
+        .card button:not(.date-picker-btn):not(.color-option),
+        .card-footer button,
+        .card-header button {
+            background-color: white !important;
+            color: #333 !important;
+            border: none !important;
+            opacity: 1 !important;
+        }
+        
+        /* All SVGs and icons inside these buttons */
+        .card *[class*="button"] svg,
+        .card *[class*="icon"] svg,
+        .card button:not(.date-picker-btn):not(.color-option) svg,
+        .card-footer button svg,
+        .card-header button svg,
+        .card i, .card svg {
+            stroke: #333 !important;
+            fill: none !important;
+            color: #333 !important;
+        }
+        
+        /* Special handling for completed button when active */
+        .card.completed .card-complete-button {
+            background-color: white !important;
+            color: #4CAF50 !important;
+        }
+        
+        .card.completed .card-complete-button svg,
+        .card.completed .card-complete-button i {
+            stroke: #4CAF50 !important;
+            color: #4CAF50 !important;
+        }
+        
+        /* Override any hover effects */
+        .card *[class*="button"]:hover,
+        .card button:not(.date-picker-btn):not(.color-option):hover {
+            background-color: white !important;
+        }
+        
+        
+        
+        
+        .date-picker-btn.secondary:hover {
+            background-color: var(--button-hover);
+        }
+        
+        .reminder-selector {
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .reminder-dropdown {
+            padding: 6px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--input-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 12px;
+            width: 100%;
+            max-width: 200px;
+        }
