@@ -1,6 +1,7 @@
 // Simple voice recognition
 let voiceRecognition = null;
 let isRecording = false;
+let colorChangeInterval = null;
 
 function initVoice() {
     console.log('🎤 Initializing voice recognition...');
@@ -53,7 +54,6 @@ function startVoice() {
         taskInput.focus();
         
         let lastTranscriptLength = 0;
-        let colorChangeInterval;
         
         voiceRecognition.onresult = (event) => {
             // Flash the microphone top when receiving speech
@@ -134,8 +134,9 @@ function stopVoice() {
     voiceBtn.classList.remove('active', 'recording');
     
     // Clear any active color change intervals
-    if (typeof colorChangeInterval !== 'undefined' && colorChangeInterval) {
+    if (colorChangeInterval) {
         clearInterval(colorChangeInterval);
+        colorChangeInterval = null;
     }
     
     if (voiceRecognition) {

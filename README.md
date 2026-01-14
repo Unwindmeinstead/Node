@@ -1,11 +1,17 @@
-# Node - Advanced Task Management Web App
+# Node - Advanced Task Management PWA
 
-A beautiful, feature-rich task management application built with vanilla HTML, CSS, and JavaScript. No frameworks, no dependencies - pure, clean code.
+A beautiful, feature-rich task management Progressive Web App (PWA) built with vanilla HTML, CSS, and JavaScript. No frameworks, no dependencies - pure, clean code.
 
 ## ✨ Features
 
+### 📱 PWA Support
+- **Install to Home Screen** - Works like a native app on mobile and desktop
+- **Offline Mode** - Full functionality even without internet
+- **Service Worker** - Intelligent caching for fast loading
+- **Mobile Optimized** - Touch-friendly with smooth scrolling
+
 ### 🎯 Core Functionality
-- **Smart Task Creation** - Intelligent categorization (Task, Project, Note, Reminder)
+- **Smart Task Creation** - Intelligent categorization (Task, Work, Travel, Meeting, Reminder, Idea, Goal, Note)
 - **Dynamic Card Management** - Create, edit, delete, and organize cards
 - **Visual Task Stacking** - Beautiful card stacking with rotation effects
 - **Drag & Drop** - Intuitive card positioning anywhere on screen

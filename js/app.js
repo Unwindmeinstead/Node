@@ -3993,7 +3993,7 @@
                     generateAnalytics();
                 }, 100);
             } else {
-                updateCardStackPositions();
+            updateCardStackPositions();
             }
             
             // Save to storage
@@ -4214,6 +4214,21 @@
             if (!speechSupported) {
                 console.warn('Speech recognition not supported in this browser');
             }
+            
+            // Light-weight PWA install hint
+            let deferredInstallPrompt = null;
+            window.addEventListener('beforeinstallprompt', (e) => {
+                // Prevent the mini-infobar from appearing on mobile
+                e.preventDefault();
+                deferredInstallPrompt = e;
+                console.log('beforeinstallprompt fired');
+                // You can hook this into a UI button if desired
+            });
+            
+            window.addEventListener('appinstalled', () => {
+                console.log('PWA was installed');
+                deferredInstallPrompt = null;
+            });
             
             console.log('App initialization complete');
         });
