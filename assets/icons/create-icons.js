@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-// PWA icon sizes
-const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+// Icon sizes used by the app / manifest
+const sizes = [16, 32, 64, 128, 256, 512];
 const outputDir = path.join(__dirname);
 const svgPath = path.join(__dirname, 'icon.svg');
 
@@ -13,7 +13,7 @@ const svgContent = fs.readFileSync(svgPath, 'utf8');
 try {
   const svg2img = require('svg2img');
   
-  // Convert SVG to PNG for each size
+  // Convert SVG to PNG for each size as icon<size>.png
   sizes.forEach(size => {
     svg2img(svgContent, { width: size, height: size }, (error, buffer) => {
       if (error) {
@@ -21,34 +21,10 @@ try {
         return;
       }
       
-      const outputPath = path.join(outputDir, `icon-${size}x${size}.png`);
+      const outputPath = path.join(outputDir, `icon${size}.png`);
       fs.writeFileSync(outputPath, buffer);
       console.log(`Created ${outputPath}`);
     });
-  });
-  
-  // Create apple-touch-icon (180x180)
-  svg2img(svgContent, { width: 180, height: 180 }, (error, buffer) => {
-    if (error) {
-      console.error('Error creating apple-touch-icon:', error);
-      return;
-    }
-    
-    const outputPath = path.join(outputDir, 'apple-touch-icon.png');
-    fs.writeFileSync(outputPath, buffer);
-    console.log(`Created ${outputPath}`);
-  });
-  
-  // Create favicon.ico equivalent (32x32)
-  svg2img(svgContent, { width: 32, height: 32 }, (error, buffer) => {
-    if (error) {
-      console.error('Error creating favicon:', error);
-      return;
-    }
-    
-    const outputPath = path.join(outputDir, 'favicon-32x32.png');
-    fs.writeFileSync(outputPath, buffer);
-    console.log(`Created ${outputPath}`);
   });
 
 } catch (e) {
@@ -57,8 +33,6 @@ try {
   console.log('2. Run this script again: node create-icons.js');
   console.log('\nAlternatively, use an online SVG to PNG converter to create:');
   sizes.forEach(size => {
-    console.log(`  - icon-${size}x${size}.png`);
+    console.log(`  - icon${size}.png (${size}x${size})`);
   });
-  console.log('  - apple-touch-icon.png (180x180)');
-  console.log('  - favicon-32x32.png');
 }

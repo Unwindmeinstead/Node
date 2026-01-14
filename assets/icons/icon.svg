@@ -1,8 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="256" cy="256" r="250" fill="#5CB8FF" />
-    <rect x="156" y="156" width="200" height="200" rx="20" fill="white" />
-    <rect x="186" y="206" width="140" height="20" rx="5" fill="#5CB8FF" />
-    <rect x="186" y="246" width="100" height="20" rx="5" fill="#5CB8FF" />
-    <rect x="186" y="286" width="60" height="20" rx="5" fill="#5CB8FF" />
-</svg> 
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark circular background -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06080C"/>
+      <stop offset="100%" stop-color="#151926"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="256" cy="256" r="248" fill="url(#bgGradient)"/>
+
+  <!-- Notebook body -->
+  <rect x="150" y="110" width="220" height="292" rx="26" ry="26" fill="#121620" stroke="#2B3245" stroke-width="6"/>
+
+  <!-- Notebook spine -->
+  <rect x="150" y="110" width="42" height="292" rx="22" ry="22" fill="#0C1018"/>
+
+  <!-- Spiral rings -->
+  <g stroke="#3B4358" stroke-width="6" stroke-linecap="round">
+    <line x1="172" y1="150" x2="188" y2="150"/>
+    <line x1="172" y1="190" x2="188" y2="190"/>
+    <line x1="172" y1="230" x2="188" y2="230"/>
+    <line x1="172" y1="270" x2="188" y2="270"/>
+    <line x1="172" y1="310" x2="188" y2="310"/>
+    <line x1="172" y1="350" x2="188" y2="350"/>
+  </g>
+
+  <!-- Page area -->
+  <rect x="192" y="134" width="158" height="244" rx="18" ry="18" fill="#0F172A" stroke="#222A3C" stroke-width="4"/>
+
+  <!-- Notebook lines -->
+  <g stroke="#3F4A63" stroke-width="4" stroke-linecap="round">
+    <line x1="210" y1="176" x2="336" y2="176"/>
+    <line x1="210" y1="208" x2="336" y2="208"/>
+    <line x1="210" y1="240" x2="314" y2="240"/>
+    <line x1="210" y1="272" x2="328" y2="272"/>
+    <line x1="210" y1="304" x2="298" y2="304"/>
+  </g>
+
+  <!-- Accent bookmark tab -->
+  <path d="M320 134 L348 134 C356 134 362 140 362 148 L362 200 L340 186 L318 200 L318 148 C318 140 324 134 332 134 Z"
+        fill="#5CB8FF"/>
+</svg>
