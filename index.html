@@ -105,7 +105,7 @@ index.html
     <meta name="msapplication-tap-highlight" content="no">
     
     <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="./manifest.json">
     
     <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg">
@@ -812,7 +812,7 @@ index.html
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
+                navigator.serviceWorker.register('./sw.js')
                     .then((registration) => {
                         console.log('SW registered:', registration.scope);
                     })

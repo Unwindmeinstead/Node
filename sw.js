@@ -1,17 +1,17 @@
 const CACHE_NAME = 'node-task-cards-v1';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/css/styles.css',
-  '/css/voice.css',
-  '/js/app.js',
-  '/js/voice.js',
-  '/js/color_toggle.js',
-  '/js/flag_priority.js',
-  '/js/makeDraggable.js',
-  '/manifest.json',
-  '/assets/icons/icon256.png',
-  '/assets/icons/icon512.png'
+  './',
+  './index.html',
+  './css/styles.css',
+  './css/voice.css',
+  './js/app.js',
+  './js/voice.js',
+  './js/color_toggle.js',
+  './js/flag_priority.js',
+  './js/makeDraggable.js',
+  './manifest.json',
+  './assets/icons/icon256.png',
+  './assets/icons/icon512.png'
 ];
 
 // Install event - cache assets
@@ -76,7 +76,7 @@ self.addEventListener('fetch', (event) => {
           .catch(() => {
             // Return offline fallback for navigation requests
             if (event.request.mode === 'navigate') {
-              return caches.match('/index.html');
+              return caches.match('./index.html');
             }
           });
       })

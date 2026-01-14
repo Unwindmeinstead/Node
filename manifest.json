@@ -2,12 +2,12 @@
   "name": "Node - Task Cards",
   "short_name": "Node",
   "description": "A beautiful task management app with smart categorization",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#5CB8FF",
   "orientation": "any",
-  "scope": "/",
+  "scope": "./",
   "icons": [
     {
       "src": "assets/icons/icon16.png",
@@ -46,7 +46,7 @@
       "name": "New Task",
       "short_name": "New",
       "description": "Create a new task card",
-      "url": "/index.html?action=new",
+      "url": "./index.html?action=new",
       "icons": [{ "src": "assets/icons/icon64.png", "sizes": "64x64" }]
     }
   ]
